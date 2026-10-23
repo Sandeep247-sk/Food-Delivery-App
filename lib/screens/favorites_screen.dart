@@ -15,6 +15,17 @@ class FavoritesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('My Favorites (${favorites.length})'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              appState.isDarkMode ? Icons.wb_sunny_rounded : Icons.dark_mode_rounded,
+              color: appState.isDarkMode ? Colors.amber : null,
+            ),
+            tooltip: appState.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+            onPressed: () => appState.toggleDarkMode(),
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: favorites.isEmpty
           ? Center(
@@ -42,7 +53,7 @@ class FavoritesScreen extends StatelessWidget {
               child: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.68,
+                  childAspectRatio: 0.82,
                   crossAxisSpacing: 14,
                   mainAxisSpacing: 14,
                 ),

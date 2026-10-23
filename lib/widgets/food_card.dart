@@ -46,14 +46,14 @@ class FoodCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Image Section with Swiggy Offer Badge Overlay
+            // Image Section with Offer Badge Overlay
             Stack(
               children: [
                 Hero(
                   tag: 'food-img-${menuItem.id}',
                   child: SafeImageNetwork(
                     imageUrl: menuItem.imageUrl,
-                    height: 135,
+                    height: 115,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -65,7 +65,7 @@ class FoodCard extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: 50,
+                    height: 40,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -79,21 +79,22 @@ class FoodCard extends StatelessWidget {
                   ),
                 ),
 
-                // Swiggy Offer Tag Text Overlay
+                // Offer Tag Text Overlay
                 Positioned(
-                  bottom: 6,
+                  bottom: 5,
                   left: 8,
                   child: Text(
                     menuItem.offerTag.toUpperCase(),
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 11,
+                      fontSize: 10,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.5,
                       shadows: [
                         Shadow(
-                            color: Colors.black.withValues(alpha: 0.8),
-                            blurRadius: 4),
+                          color: Colors.black.withValues(alpha: 0.8),
+                          blurRadius: 4,
+                        ),
                       ],
                     ),
                   ),
@@ -101,8 +102,8 @@ class FoodCard extends StatelessWidget {
 
                 // Favorite Button
                 Positioned(
-                  top: 8,
-                  right: 8,
+                  top: 6,
+                  right: 6,
                   child: Material(
                     color: Colors.black38,
                     shape: const CircleBorder(),
@@ -114,7 +115,7 @@ class FoodCard extends StatelessWidget {
                         child: Icon(
                           isFavorite ? Icons.favorite : Icons.favorite_border,
                           color: isFavorite ? Colors.redAccent : Colors.white,
-                          size: 18,
+                          size: 16,
                         ),
                       ),
                     ),
@@ -126,7 +127,7 @@ class FoodCard extends StatelessWidget {
             // Item Details Section
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -137,15 +138,15 @@ class FoodCard extends StatelessWidget {
                         // Veg / Non-Veg + Restaurant
                         Row(
                           children: [
-                            VegNonVegBadge(isVeg: menuItem.isVeg, size: 14),
-                            const SizedBox(width: 6),
+                            VegNonVegBadge(isVeg: menuItem.isVeg, size: 12),
+                            const SizedBox(width: 4),
                             Expanded(
                               child: Text(
                                 menuItem.restaurantName,
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                                 style: const TextStyle(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: Colors.grey,
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -153,7 +154,7 @@ class FoodCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 2),
 
                         // Title
                         Text(
@@ -161,18 +162,18 @@ class FoodCard extends StatelessWidget {
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
-                            fontSize: 14,
+                            fontSize: 13,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        const SizedBox(height: 4),
+                        const SizedBox(height: 2),
 
                         // Rating Pill & Time
                         Row(
                           children: [
                             Container(
                               padding: const EdgeInsets.symmetric(
-                                  horizontal: 5, vertical: 2),
+                                  horizontal: 4, vertical: 1),
                               decoration: BoxDecoration(
                                 color: AppTheme.vegGreen,
                                 borderRadius: BorderRadius.circular(4),
@@ -181,24 +182,24 @@ class FoodCard extends StatelessWidget {
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
                                   const Icon(Icons.star,
-                                      size: 11, color: Colors.white),
+                                      size: 10, color: Colors.white),
                                   const SizedBox(width: 2),
                                   Text(
                                     '${menuItem.rating}',
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 11,
+                                      fontSize: 10,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 6),
+                            const SizedBox(width: 4),
                             Text(
                               '• ${menuItem.prepTime}',
                               style: const TextStyle(
-                                fontSize: 11,
+                                fontSize: 10,
                                 color: Colors.grey,
                               ),
                             ),
@@ -207,7 +208,7 @@ class FoodCard extends StatelessWidget {
                       ],
                     ),
 
-                    // Price & Swiggy ADD Button
+                    // Price & ADD Button
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -215,23 +216,23 @@ class FoodCard extends StatelessWidget {
                         Text(
                           '\$${menuItem.price.toStringAsFixed(2)}',
                           style: const TextStyle(
-                            fontSize: 15,
+                            fontSize: 14,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
 
-                        // Swiggy Iconic ADD Button / Stepper
+                        // ADD Button / Stepper
                         cartQuantity == 0
                             ? Material(
-                                color: Colors.white,
-                                elevation: 2,
+                                color: theme.cardColor,
+                                elevation: 1,
                                 borderRadius: BorderRadius.circular(8),
                                 child: InkWell(
                                   onTap: onAddToCartTap,
                                   borderRadius: BorderRadius.circular(8),
                                   child: Container(
                                     padding: const EdgeInsets.symmetric(
-                                        horizontal: 16, vertical: 6),
+                                        horizontal: 12, vertical: 5),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(8),
                                       border: Border.all(
@@ -244,14 +245,14 @@ class FoodCard extends StatelessWidget {
                                       style: TextStyle(
                                         color: AppTheme.vegGreen,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13,
+                                        fontSize: 12,
                                       ),
                                     ),
                                   ),
                                 ),
                               )
                             : Container(
-                                height: 32,
+                                height: 28,
                                 decoration: BoxDecoration(
                                   color: AppTheme.vegGreen,
                                   borderRadius: BorderRadius.circular(8),
@@ -263,9 +264,9 @@ class FoodCard extends StatelessWidget {
                                       onTap: () => onUpdateQuantity?.call(-1),
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 8),
+                                            horizontal: 6),
                                         child: Icon(Icons.remove,
-                                            size: 16, color: Colors.white),
+                                            size: 14, color: Colors.white),
                                       ),
                                     ),
                                     Text(
@@ -273,16 +274,16 @@ class FoodCard extends StatelessWidget {
                                       style: const TextStyle(
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
-                                        fontSize: 13,
+                                        fontSize: 12,
                                       ),
                                     ),
                                     InkWell(
                                       onTap: () => onUpdateQuantity?.call(1),
                                       child: const Padding(
                                         padding: EdgeInsets.symmetric(
-                                            horizontal: 8),
+                                            horizontal: 6),
                                         child: Icon(Icons.add,
-                                            size: 16, color: Colors.white),
+                                            size: 14, color: Colors.white),
                                       ),
                                     ),
                                   ],

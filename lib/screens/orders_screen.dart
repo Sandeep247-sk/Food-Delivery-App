@@ -17,6 +17,17 @@ class OrdersScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('My Orders & History'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              appState.isDarkMode ? Icons.wb_sunny_rounded : Icons.dark_mode_rounded,
+              color: appState.isDarkMode ? Colors.amber : null,
+            ),
+            tooltip: appState.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+            onPressed: () => appState.toggleDarkMode(),
+          ),
+          const SizedBox(width: 8),
+        ],
       ),
       body: orders.isEmpty
           ? Center(
