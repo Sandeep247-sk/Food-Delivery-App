@@ -88,7 +88,15 @@ class HomeScreen extends StatelessWidget {
               ],
             ),
           ),
-          const SizedBox(width: 12),
+          const SizedBox(width: 8),
+          IconButton(
+            icon: Icon(
+              appState.isDarkMode ? Icons.wb_sunny_outlined : Icons.dark_mode_outlined,
+              color: appState.isDarkMode ? Colors.amber : theme.iconTheme.color,
+            ),
+            tooltip: appState.isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode',
+            onPressed: () => appState.toggleDarkMode(),
+          ),
           CircleAvatar(
             radius: 18,
             backgroundColor: theme.primaryColor,
