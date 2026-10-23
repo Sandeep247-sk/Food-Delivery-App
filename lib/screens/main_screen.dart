@@ -76,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
                 const NavigationDestination(
                   icon: Icon(Icons.restaurant_outlined),
                   selectedIcon: Icon(Icons.restaurant, color: AppTheme.primaryColor),
-                  label: 'Swiggy',
+                  label: 'Food',
                 ),
                 NavigationDestination(
                   icon: Badge(

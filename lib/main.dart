@@ -65,7 +65,7 @@ class _RestaurantAppState extends State<RestaurantApp> {
       listenable: _appState,
       builder: (context, child) {
         return MaterialApp(
-          title: 'Swiggy Food & Dining',
+          title: 'Food Delivery App',
           debugShowCheckedModeBanner: false,
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

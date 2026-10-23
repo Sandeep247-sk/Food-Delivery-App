@@ -2,7 +2,7 @@
     <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
-        android:label="Swiggy Food &amp; Dining"
+        android:label="Food Delivery App"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

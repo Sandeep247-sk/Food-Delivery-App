@@ -62,7 +62,7 @@ class _CartScreenState extends State<CartScreen> {
 
     if (cart.isEmpty) {
       return Scaffold(
-        appBar: AppBar(title: const Text('Swiggy Cart')),
+        appBar: AppBar(title: const Text('Cart')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
