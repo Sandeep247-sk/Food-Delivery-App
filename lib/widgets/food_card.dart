@@ -44,6 +44,7 @@ class FoodCard extends StatelessWidget {
       child: InkWell(
         onTap: onTap,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Image Section with Offer Badge Overlay
@@ -53,7 +54,7 @@ class FoodCard extends StatelessWidget {
                   tag: 'food-img-${menuItem.id}',
                   child: SafeImageNetwork(
                     imageUrl: menuItem.imageUrl,
-                    height: 115,
+                    height: 110,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -65,7 +66,7 @@ class FoodCard extends StatelessWidget {
                   left: 0,
                   right: 0,
                   child: Container(
-                    height: 40,
+                    height: 36,
                     decoration: BoxDecoration(
                       gradient: LinearGradient(
                         begin: Alignment.topCenter,
@@ -81,7 +82,7 @@ class FoodCard extends StatelessWidget {
 
                 // Offer Tag Text Overlay
                 Positioned(
-                  bottom: 5,
+                  bottom: 4,
                   left: 8,
                   child: Text(
                     menuItem.offerTag.toUpperCase(),
@@ -125,174 +126,168 @@ class FoodCard extends StatelessWidget {
             ),
 
             // Item Details Section
-            Expanded(
-              child: Padding(
-                padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // Veg / Non-Veg + Restaurant
-                        Row(
+            Padding(
+              padding: const EdgeInsets.fromLTRB(8, 6, 8, 8),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Veg / Non-Veg + Restaurant
+                  Row(
+                    children: [
+                      VegNonVegBadge(isVeg: menuItem.isVeg, size: 12),
+                      const SizedBox(width: 4),
+                      Expanded(
+                        child: Text(
+                          menuItem.restaurantName,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            fontSize: 10,
+                            color: Colors.grey,
+                            fontWeight: FontWeight.w500,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 2),
+
+                  // Title
+                  Text(
+                    menuItem.name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontSize: 13,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 2),
+
+                  // Rating Pill & Time
+                  Row(
+                    children: [
+                      Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 4, vertical: 1),
+                        decoration: BoxDecoration(
+                          color: AppTheme.vegGreen,
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            VegNonVegBadge(isVeg: menuItem.isVeg, size: 12),
-                            const SizedBox(width: 4),
-                            Expanded(
-                              child: Text(
-                                menuItem.restaurantName,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(
-                                  fontSize: 10,
-                                  color: Colors.grey,
-                                  fontWeight: FontWeight.w500,
-                                ),
+                            const Icon(Icons.star,
+                                size: 10, color: Colors.white),
+                            const SizedBox(width: 2),
+                            Text(
+                              '${menuItem.rating}',
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 2),
-
-                        // Title
-                        Text(
-                          menuItem.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            fontSize: 13,
-                            fontWeight: FontWeight.bold,
-                          ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        '• ${menuItem.prepTime}',
+                        style: const TextStyle(
+                          fontSize: 10,
+                          color: Colors.grey,
                         ),
-                        const SizedBox(height: 2),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 8),
 
-                        // Rating Pill & Time
-                        Row(
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 4, vertical: 1),
+                  // Price & ADD Button
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Text(
+                        '\$${menuItem.price.toStringAsFixed(2)}',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+
+                      // ADD Button / Stepper
+                      cartQuantity == 0
+                          ? Material(
+                              color: theme.cardColor,
+                              elevation: 1,
+                              borderRadius: BorderRadius.circular(8),
+                              child: InkWell(
+                                onTap: onAddToCartTap,
+                                borderRadius: BorderRadius.circular(8),
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12, vertical: 5),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    border: Border.all(
+                                      color: AppTheme.vegGreen,
+                                      width: 1.5,
+                                    ),
+                                  ),
+                                  child: const Text(
+                                    'ADD',
+                                    style: TextStyle(
+                                      color: AppTheme.vegGreen,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            )
+                          : Container(
+                              height: 28,
                               decoration: BoxDecoration(
                                 color: AppTheme.vegGreen,
-                                borderRadius: BorderRadius.circular(4),
+                                borderRadius: BorderRadius.circular(8),
                               ),
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Icon(Icons.star,
-                                      size: 10, color: Colors.white),
-                                  const SizedBox(width: 2),
+                                  InkWell(
+                                    onTap: () => onUpdateQuantity?.call(-1),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 6),
+                                      child: Icon(Icons.remove,
+                                          size: 14, color: Colors.white),
+                                    ),
+                                  ),
                                   Text(
-                                    '${menuItem.rating}',
+                                    '$cartQuantity',
                                     style: const TextStyle(
                                       color: Colors.white,
-                                      fontSize: 10,
                                       fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                    ),
+                                  ),
+                                  InkWell(
+                                    onTap: () => onUpdateQuantity?.call(1),
+                                    child: const Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 6),
+                                      child: Icon(Icons.add,
+                                          size: 14, color: Colors.white),
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            const SizedBox(width: 4),
-                            Text(
-                              '• ${menuItem.prepTime}',
-                              style: const TextStyle(
-                                fontSize: 10,
-                                color: Colors.grey,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-
-                    // Price & ADD Button
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          '\$${menuItem.price.toStringAsFixed(2)}',
-                          style: const TextStyle(
-                            fontSize: 14,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-
-                        // ADD Button / Stepper
-                        cartQuantity == 0
-                            ? Material(
-                                color: theme.cardColor,
-                                elevation: 1,
-                                borderRadius: BorderRadius.circular(8),
-                                child: InkWell(
-                                  onTap: onAddToCartTap,
-                                  borderRadius: BorderRadius.circular(8),
-                                  child: Container(
-                                    padding: const EdgeInsets.symmetric(
-                                        horizontal: 12, vertical: 5),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(8),
-                                      border: Border.all(
-                                        color: AppTheme.vegGreen,
-                                        width: 1.5,
-                                      ),
-                                    ),
-                                    child: const Text(
-                                      'ADD',
-                                      style: TextStyle(
-                                        color: AppTheme.vegGreen,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              )
-                            : Container(
-                                height: 28,
-                                decoration: BoxDecoration(
-                                  color: AppTheme.vegGreen,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    InkWell(
-                                      onTap: () => onUpdateQuantity?.call(-1),
-                                      child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 6),
-                                        child: Icon(Icons.remove,
-                                            size: 14, color: Colors.white),
-                                      ),
-                                    ),
-                                    Text(
-                                      '$cartQuantity',
-                                      style: const TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 12,
-                                      ),
-                                    ),
-                                    InkWell(
-                                      onTap: () => onUpdateQuantity?.call(1),
-                                      child: const Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 6),
-                                        child: Icon(Icons.add,
-                                            size: 14, color: Colors.white),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                      ],
-                    ),
-                  ],
-                ),
+                    ],
+                  ),
+                ],
               ),
             ),
           ],
