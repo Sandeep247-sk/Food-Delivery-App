@@ -21,6 +21,8 @@ class SafeImageNetwork extends StatelessWidget {
       height: height,
       width: width,
       fit: fit,
+      cacheWidth: 500, // Decodes images at target resolution in memory to prevent jank
+      filterQuality: FilterQuality.low, // Ultra-fast filtering on mobile GPUs
       errorBuilder: (context, error, stackTrace) {
         return Container(
           height: height,
@@ -35,22 +37,26 @@ class SafeImageNetwork extends StatelessWidget {
           child: const Center(
             child: Icon(
               Icons.restaurant_rounded,
-              size: 44,
+              size: 40,
               color: Colors.white,
             ),
           ),
         );
       },
-      loadingBuilder: (context, child, loadingProgress) {
-        if (loadingProgress == null) return child;
+      frameBuilder: (context, child, frame, wasSynchronouslyLoaded) {
+        if (wasSynchronouslyLoaded || frame != null) {
+          return child;
+        }
         return Container(
           height: height,
           width: width,
-          color: Colors.grey.shade200,
+          color: Theme.of(context).brightness == Brightness.light
+              ? Colors.grey.shade200
+              : Colors.grey.shade800,
           child: const Center(
             child: SizedBox(
-              width: 24,
-              height: 24,
+              width: 20,
+              height: 20,
               child: CircularProgressIndicator(strokeWidth: 2),
             ),
           ),

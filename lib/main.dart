@@ -7,10 +7,14 @@ import 'theme/app_theme.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  // Tune ImageCache for smooth scrolling
+  PaintingBinding.instance.imageCache.maximumSizeBytes = 100 * 1024 * 1024; // 100 MB
+  PaintingBinding.instance.imageCache.maximumSize = 150; // 150 images
+
   // Initialize Supabase Client
   await SupabaseService.init();
 
-  // Global Error Boundary to prevent blank white screen on Web
+  // Global Error Boundary
   ErrorWidget.builder = (FlutterErrorDetails details) {
     return Scaffold(
       body: Center(
@@ -55,7 +59,7 @@ class _RestaurantAppState extends State<RestaurantApp> {
   @override
   void initState() {
     super.initState();
-    // Asynchronously load live data from Supabase
+    // Asynchronously pre-fetch live data from Supabase
     _appState.loadSupabaseData();
   }
 
@@ -70,9 +74,10 @@ class _RestaurantAppState extends State<RestaurantApp> {
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
           themeMode: _appState.isDarkMode ? ThemeMode.dark : ThemeMode.light,
-          home: MainScreen(appState: _appState),
+          home: child,
         );
       },
+      child: MainScreen(appState: _appState),
     );
   }
 }

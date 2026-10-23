@@ -133,12 +133,14 @@ class AppState extends ChangeNotifier {
   }
 
   List<MenuItemModel> get filteredMenuItems {
+    final query = _searchQuery.trim().toLowerCase();
+
     var result = _liveMenuItems.where((item) {
       final matchesCategory =
           _selectedCategoryId == 'all' || item.categoryId == _selectedCategoryId;
-      final matchesSearch = _searchQuery.isEmpty ||
-          item.name.toLowerCase().contains(_searchQuery.toLowerCase()) ||
-          item.description.toLowerCase().contains(_searchQuery.toLowerCase());
+      final matchesSearch = query.isEmpty ||
+          item.name.toLowerCase().contains(query) ||
+          item.description.toLowerCase().contains(query);
       final matchesPrice = item.price <= _maxPrice;
       final matchesRating = item.rating >= _minRating;
       final matchesCalories = item.calories <= _maxCalories;

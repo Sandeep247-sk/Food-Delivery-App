@@ -27,7 +27,7 @@ class MockData {
       reviewCount: 1250,
       categoryId: 'biryani',
       imageUrl:
-          'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400&q=75',
       calories: 680,
       prepTime: '25-30 mins',
       distance: '1.8 km',
@@ -71,7 +71,7 @@ class MockData {
       reviewCount: 320,
       categoryId: 'burgers',
       imageUrl:
-          'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=75',
       calories: 780,
       prepTime: '15-20 mins',
       distance: '2.5 km',
@@ -116,7 +116,7 @@ class MockData {
       reviewCount: 890,
       categoryId: 'north_indian',
       imageUrl:
-          'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=400&q=75',
       calories: 620,
       prepTime: '20-25 mins',
       distance: '1.2 km',
@@ -146,7 +146,7 @@ class MockData {
       reviewCount: 450,
       categoryId: 'pizza',
       imageUrl:
-          'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1604382354936-07c5d9983bd3?auto=format&fit=crop&w=400&q=75',
       calories: 650,
       prepTime: '20 mins',
       distance: '3.1 km',
@@ -175,7 +175,7 @@ class MockData {
       reviewCount: 380,
       categoryId: 'chinese',
       imageUrl:
-          'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=400&q=75',
       calories: 510,
       prepTime: '15 mins',
       distance: '2.0 km',
@@ -200,7 +200,7 @@ class MockData {
       reviewCount: 180,
       categoryId: 'salads',
       imageUrl:
-          'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=400&q=75',
       calories: 420,
       prepTime: '10-15 mins',
       distance: '1.5 km',
@@ -219,7 +219,7 @@ class MockData {
       reviewCount: 640,
       categoryId: 'desserts',
       imageUrl:
-          'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=400&q=75',
       calories: 510,
       prepTime: '10 mins',
       distance: '1.0 km',
@@ -238,7 +238,7 @@ class MockData {
       reviewCount: 230,
       categoryId: 'drinks',
       imageUrl:
-          'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=400&q=75',
       calories: 190,
       prepTime: '5 mins',
       distance: '0.8 km',
@@ -255,14 +255,14 @@ class MockData {
       'subtitle': 'Free Delivery + Extra 15% OFF on top restaurants',
       'tag': 'SWIGGY ONE',
       'imageUrl':
-          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=75',
     },
     {
       'title': 'CRAZY DEALS • UP TO 60% OFF',
       'subtitle': 'Use code SWIGGY60 at checkout',
       'tag': 'GOURMET FEST',
       'imageUrl':
-          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80',
+          'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=400&q=75',
     },
   ];
 
