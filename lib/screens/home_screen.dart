@@ -207,13 +207,15 @@ class HomeScreen extends StatelessWidget {
                                       style: const TextStyle(
                                         fontSize: 12,
                                         fontWeight: FontWeight.bold,
+                                        color: Color(0xFF1E293B), // Dark text for high contrast on pastel card
                                       ),
                                     ),
                                     Text(
                                       service['subtitle']!,
                                       style: const TextStyle(
                                         fontSize: 9,
-                                        color: Colors.grey,
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF475569), // Dark gray text for high contrast on pastel card
                                       ),
                                     ),
                                   ],
@@ -306,7 +308,9 @@ class HomeScreen extends StatelessWidget {
                                       border: Border.all(
                                         color: isSelected
                                             ? AppTheme.primaryColor
-                                            : Colors.grey.shade300,
+                                            : theme.brightness == Brightness.light
+                                                ? Colors.grey.shade300
+                                                : const Color(0xFF3A3A3A),
                                         width: 1.5,
                                       ),
                                     ),
@@ -552,7 +556,11 @@ class HomeScreen extends StatelessWidget {
                 : Theme.of(context).cardColor,
             borderRadius: BorderRadius.circular(20),
             border: Border.all(
-              color: isSelected ? AppTheme.primaryColor : Colors.grey.shade300,
+              color: isSelected
+                  ? AppTheme.primaryColor
+                  : Theme.of(context).brightness == Brightness.light
+                      ? Colors.grey.shade300
+                      : const Color(0xFF3A3A3A),
               width: 1.2,
             ),
           ),
