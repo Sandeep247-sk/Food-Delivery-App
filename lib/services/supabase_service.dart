@@ -6,9 +6,9 @@ import '../models/order.dart';
 import '../models/reservation.dart';
 
 class SupabaseService {
-  // Replace these placeholders with your actual Supabase URL & Key from your Supabase Dashboard
-  static const String supabaseUrl = 'https://YOUR_SUPABASE_PROJECT_ID.supabase.co';
-  static const String supabaseAnonKey = 'YOUR_SUPABASE_ANON_KEY';
+  // Supabase URL & Key configured for project htmxocsfkvdbkxcrbzsx
+  static const String supabaseUrl = 'https://htmxocsfkvdbkxcrbzsx.supabase.co';
+  static const String supabaseAnonKey = 'sb_publishable_X2U87UcHeK5hRyqXqjqb6w_nk5ANE3J';
 
   static bool _isInitialized = false;
 
@@ -23,7 +23,7 @@ class SupabaseService {
     try {
       await Supabase.initialize(
         url: supabaseUrl,
-        anonKey: supabaseAnonKey,
+        publishableKey: supabaseAnonKey,
       );
       _isInitialized = true;
       if (kDebugMode) {
